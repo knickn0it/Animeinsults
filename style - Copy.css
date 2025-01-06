@@ -1,0 +1,152 @@
+/* General page layout */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+body {
+  background-color: #ade48f; /* Fallback background color */
+  font-family: 'Patrick Hand', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  margin: 0px;
+  position: relative; /* Positioning for pseudo-element */
+  overflow: hidden; /* Prevent scrollbars if the background is large */
+}
+
+/* Content container with fixed width and height */
+.content-container {
+  position: relative;
+  background-color: rgba(211, 211, 211, 0.7); /* Slightly opaque white background */
+  padding: 20px; /* Padding to create space inside the container */
+  border-radius: 10px;
+  z-index: 1; /* Ensure content stays above background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for the content box */
+  width: 500px; /* Fixed width for the content container */
+  height: 600px; /* Fixed height for the content container */
+  overflow: hidden; /* Prevent overflow of the container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Counter and counter name styling */
+.counter {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: -10px;
+  font-family: "Patrick Hand", sans-serif;
+  color: #264540;
+}
+
+.counter-name {
+  font-size: 20px;
+  margin-top: 0px;
+  font-family: "Patrick Hand", sans-serif;
+  color: #264540;
+}
+
+/* Dynamic message and insult button */
+.dynamic-message {
+  font-size: 20px;
+  font-weight: bold;
+  color: #264540;
+  margin-top: 20px;
+  word-wrap: break-word; /* Ensure long text doesn't overflow */
+  white-space: normal; /* Allow text to wrap properly */
+  max-height: 60px; /* Limit the height of the dynamic message */
+  overflow: hidden; /* Hide the overflow text */
+  text-overflow: ellipsis; /* Add ellipsis if the message overflows */
+  width: 100%; /* Make sure it uses the full available width */
+  line-height: 1.5em; /* Adjust line height for better readability */
+}
+
+/* Insult button styling */
+.insult-button {
+  background-color: #ff6f61; /* A nice color for the button */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.2em;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.insult-button:hover {
+  background-color: #e75c52; /* Darker shade on hover */
+}
+
+/* Anime image styling */
+.anime-image {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  margin: 10px 0;
+}
+
+/* Share buttons styling */
+.share-buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#reddit-share,
+#twitter-share {
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.3s;
+  display: inline-block;
+  border: none;
+}
+
+#reddit-share {
+  background-color: #FF4500; /* Reddit orange */
+}
+
+#reddit-share:hover {
+  background-color: #e03e00; /* Slightly darker orange on hover */
+}
+
+#twitter-share {
+  background-color: #1DA1F2; /* Twitter blue */
+}
+
+#twitter-share:hover {
+  background-color: #0d85c3; /* Slightly darker blue on hover */
+}
+
+/* Media query for small screens (mobile responsiveness) */
+@media (max-width: 600px) {
+  .counter {
+    font-size: 1.5em;
+  }
+
+  .counter-name {
+    font-size: 1.2em;
+  }
+
+  .dynamic-message {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 20px;
+  }
+
+  .insult-button {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
+
+  .share-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}

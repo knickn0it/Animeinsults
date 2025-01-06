@@ -1,71 +1,61 @@
-/* General page layout */
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-
+/* Default styles for large screens (web) */
 body {
-  background-color: #ade48f; /* Fallback background color */
   font-family: 'Patrick Hand', sans-serif;
+  background-color: #ade48f;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   text-align: center;
-  margin: 0px;
-  position: relative; /* Positioning for pseudo-element */
-  overflow: hidden; /* Prevent scrollbars if the background is large */
+  margin: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Content container with fixed width and height */
 .content-container {
   position: relative;
-  background-color: rgba(211, 211, 211, 0.7); /* Slightly opaque white background */
-  padding: 20px; /* Padding to create space inside the container */
+  background-color: rgba(211, 211, 211, 0.7);
+  padding: 20px;
   border-radius: 10px;
-  z-index: 1; /* Ensure content stays above background */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for the content box */
-  width: 500px; /* Fixed width for the content container */
-  height: 600px; /* Fixed height for the content container */
-  overflow: hidden; /* Prevent overflow of the container */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  height: 600px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
 
-/* Counter and counter name styling */
 .counter {
   font-size: 64px;
   font-weight: bold;
-  margin-bottom: -10px;
-  font-family: "Patrick Hand", sans-serif;
   color: #264540;
 }
 
 .counter-name {
   font-size: 20px;
-  margin-top: 0px;
-  font-family: "Patrick Hand", sans-serif;
   color: #264540;
 }
 
-/* Dynamic message and insult button */
 .dynamic-message {
   font-size: 20px;
   font-weight: bold;
   color: #264540;
   margin-top: 20px;
-  word-wrap: break-word; /* Ensure long text doesn't overflow */
-  white-space: normal; /* Allow text to wrap properly */
-  max-height: 60px; /* Limit the height of the dynamic message */
-  overflow: hidden; /* Hide the overflow text */
-  text-overflow: ellipsis; /* Add ellipsis if the message overflows */
-  width: 100%; /* Make sure it uses the full available width */
-  line-height: 1.5em; /* Adjust line height for better readability */
+  word-wrap: break-word;
+  white-space: normal;
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  line-height: 1.5em;
 }
 
-/* Insult button styling */
 .insult-button {
-  background-color: #ff6f61; /* A nice color for the button */
+  background-color: #ff6f61;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -77,18 +67,15 @@ body {
 }
 
 .insult-button:hover {
-  background-color: #e75c52; /* Darker shade on hover */
+  background-color: #e75c52;
 }
 
-/* Anime image styling */
 .anime-image {
-  position: relative;
   width: 256px;
   height: 256px;
   margin: 10px 0;
 }
 
-/* Share buttons styling */
 .share-buttons {
   margin-top: 40px;
   display: flex;
@@ -104,30 +91,38 @@ body {
   border-radius: 5px;
   color: white;
   transition: background-color 0.3s;
-  display: inline-block;
-  border: none;
 }
 
 #reddit-share {
-  background-color: #FF4500; /* Reddit orange */
+  background-color: #FF4500;
 }
 
 #reddit-share:hover {
-  background-color: #e03e00; /* Slightly darker orange on hover */
+  background-color: #e03e00;
 }
 
 #twitter-share {
-  background-color: #1DA1F2; /* Twitter blue */
+  background-color: #1DA1F2;
 }
 
 #twitter-share:hover {
-  background-color: #0d85c3; /* Slightly darker blue on hover */
+  background-color: #0d85c3;
 }
 
-/* Media query for small screens (mobile responsiveness) */
+/* Mobile Responsiveness for screens below 600px */
 @media (max-width: 600px) {
+  body {
+    padding: 10px; /* Adding padding for mobile */
+  }
+
+  .content-container {
+    width: 100%; /* Make the content container full width */
+    height: auto; /* Allow the height to adjust to content */
+    padding: 10px;
+  }
+
   .counter {
-    font-size: 1.5em;
+    font-size: 2em; /* Adjust counter size */
   }
 
   .counter-name {
@@ -135,9 +130,9 @@ body {
   }
 
   .dynamic-message {
-    font-weight: bold;
-    font-size: 20px;
-    padding: 10px 20px;
+    font-size: 1.1em;
+    margin-top: 10px;
+    padding: 10px;
   }
 
   .insult-button {
@@ -145,8 +140,41 @@ body {
     padding: 10px 20px;
   }
 
-  .share-button {
+  .anime-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .share-buttons {
+    flex-direction: column; /* Stack share buttons vertically */
+    gap: 10px;
+  }
+
+  #reddit-share, #twitter-share {
     font-size: 14px;
     padding: 8px 16px;
+  }
+}
+
+/* Additional media query for tablets (600px to 768px) */
+@media (max-width: 768px) {
+  .content-container {
+    width: 80%; /* Make the content container smaller on tablets */
+    height: auto;
+    padding: 20px;
+  }
+
+  .counter {
+    font-size: 2.5em; /* Slightly larger counter for tablets */
+  }
+
+  .dynamic-message {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+
+  .insult-button {
+    font-size: 1.1em;
+    padding: 12px 24px;
   }
 }
