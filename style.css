@@ -1,7 +1,9 @@
-/* Default styles for large screens (web) */
+/* General page layout */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 body {
+  background-color: #ade48f; /* Fallback background color */
   font-family: 'Patrick Hand', sans-serif;
-  background-color: #ade48f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,22 +15,23 @@ body {
   overflow: hidden;
 }
 
-/* Content container with fixed width and height */
+/* Content container with fixed width and flexible height */
 .content-container {
   position: relative;
-  background-color: rgba(211, 211, 211, 0.7);
+  background-color: rgba(211, 211, 211, 0.7); /* Slightly opaque white background */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: 500px;
-  height: 600px;
-  overflow: hidden;
+  max-height: 600px; /* Max height of the container */
+  overflow: hidden; /* Prevent content from overflowing */
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Distribute elements */
   align-items: center;
-  justify-content: flex-start;
 }
 
+/* Counter and counter name styling */
 .counter {
   font-size: 64px;
   font-weight: bold;
@@ -40,6 +43,7 @@ body {
   color: #264540;
 }
 
+/* Dynamic message styling */
 .dynamic-message {
   font-size: 20px;
   font-weight: bold;
@@ -47,13 +51,14 @@ body {
   margin-top: 20px;
   word-wrap: break-word;
   white-space: normal;
-  max-height: 60px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex-grow: 1; /* Allow this section to grow */
+  overflow-y: auto; /* Enable scrolling if content is long */
+  text-overflow: ellipsis; /* Add ellipsis if the message overflows */
   width: 100%;
   line-height: 1.5em;
 }
 
+/* Insult button styling */
 .insult-button {
   background-color: #ff6f61;
   color: white;
@@ -70,6 +75,7 @@ body {
   background-color: #e75c52;
 }
 
+/* Anime image styling */
 .anime-image {
   width: 256px;
   height: 256px;
@@ -77,7 +83,7 @@ body {
 }
 
 .share-buttons {
-  margin-top: 40px;
+  margin-top: 20px; /* Added some margin for better spacing */
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -91,6 +97,8 @@ body {
   border-radius: 5px;
   color: white;
   transition: background-color 0.3s;
+  display: inline-block;
+  border: none;
 }
 
 #reddit-share {
@@ -109,20 +117,20 @@ body {
   background-color: #0d85c3;
 }
 
-/* Mobile Responsiveness for screens below 600px */
+/* Media query for small screens (mobile responsiveness) */
 @media (max-width: 600px) {
   body {
-    padding: 10px; /* Adding padding for mobile */
+    padding: 10px;
   }
 
   .content-container {
-    width: 100%; /* Make the content container full width */
-    height: auto; /* Allow the height to adjust to content */
+    width: 100%;
+    height: auto;
     padding: 10px;
   }
 
   .counter {
-    font-size: 2em; /* Adjust counter size */
+    font-size: 2em;
   }
 
   .counter-name {
@@ -131,8 +139,9 @@ body {
 
   .dynamic-message {
     font-size: 1.1em;
-    margin-top: 10px;
     padding: 10px;
+    max-height: 80px; /* Allow for a larger dynamic message */
+    overflow-y: auto; /* Enable scrolling for longer messages */
   }
 
   .insult-button {
@@ -150,7 +159,8 @@ body {
     gap: 10px;
   }
 
-  #reddit-share, #twitter-share {
+  #reddit-share,
+  #twitter-share {
     font-size: 14px;
     padding: 8px 16px;
   }
@@ -159,13 +169,12 @@ body {
 /* Additional media query for tablets (600px to 768px) */
 @media (max-width: 768px) {
   .content-container {
-    width: 80%; /* Make the content container smaller on tablets */
-    height: auto;
+    width: 80%;
     padding: 20px;
   }
 
   .counter {
-    font-size: 2.5em; /* Slightly larger counter for tablets */
+    font-size: 2.5em;
   }
 
   .dynamic-message {
