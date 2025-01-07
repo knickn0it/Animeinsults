@@ -3,9 +3,10 @@ let currentAudio = null; // Track the currently playing audio
 // Number of assets (adjust based on your actual file count or dynamically fetch)
 const assetCount = 5; // Example: 5 pairs of image/audio files
 
-// File directory paths for images and audio
-const imageDirectory = "assets/images/";
-const audioDirectory = "assets/audio/";
+// AWS S3 file directory paths for images and audio
+const imageDirectory = "https://weebsroasted-assets.s3.eu-north-1.amazonaws.com/images/";
+const audioDirectory = "https://weebsroasted-assets.s3.eu-north-1.amazonaws.com/audio/";
+const backgroundDirectory = "https://weebsroasted-assets.s3.eu-north-1.amazonaws.com/background/";
 
 // Generate image and audio assets dynamically based on the count
 const animeAssets = Array.from({ length: assetCount }, (_, index) => ({
@@ -34,24 +35,17 @@ fetch('assets/insults.json')  // Assuming insults.json is in the assets folder
     dynamicMessageElement.textContent = "Failed to load insults. Please try again later.";
   });
 
-// Manually list the background images
-const backgroundImages = [
-  'disgusted1.jpg', 
-  'disgusted2.jpg', 
-  'disgusted3.jpg',
-  'disgusted4.jpg',
-  'disgusted5.jpg',
-  'disgusted6.jpg',
-  'disgusted7.jpg',
-  'disgusted8.jpg',
-  'disgusted9.jpg'
-];
-
-// Pick a random background image
-const randomBackground = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
-document.body.style.backgroundImage = `url('assets/background/${randomBackground}')`;
-document.body.style.backgroundSize = 'cover'; // Ensure the background covers the entire screen
-document.body.style.backgroundPosition = 'center'; // Center the image
+// Fetch the list of background images from S3
+fetch('https://weebsroasted-assets.s3.eu-north-1.amazonaws.com/background/background-images.json')
+  .then(response => response.json())
+  .then(data => {
+    const backgroundImages = data.backgroundImages; // Array of image filenames
+    const randomBackground = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+    document.body.style.backgroundImage = `url('${backgroundDirectory}${randomBackground}')`;
+    document.body.style.backgroundSize = 'cover'; // Ensure the background covers the entire screen
+    document.body.style.backgroundPosition = 'center'; // Center the image
+  })
+  .catch(error => console.error('Error fetching background images:', error));
 
 // Fetch the insult count from Cloudflare Worker API
 fetch('https://crimson-lab-0db6.dathanster.workers.dev/api/count')  // Replace with your Worker URL
